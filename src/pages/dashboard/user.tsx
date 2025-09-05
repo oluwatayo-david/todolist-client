@@ -1,11 +1,11 @@
-import { useAuth } from "../../hooks/use-auth.ts";
+import { useAuth } from "@/hooks/use-auth.ts";
 import { Button } from "../../components/ui/button.tsx";
 import { Card, CardContent, CardHeader } from "../../components/ui/card.tsx";
 import { Skeleton } from "../../components/ui/skeleton.tsx";
 import { Input } from "../../components/ui/input.tsx";
 import { FaUser, FaEdit, FaSignOutAlt, FaEnvelope, FaCamera } from "react-icons/fa";
 import { useGetTasks } from "../../hooks/task/use-get-tasks.tsx";
-import { useMediaQuery } from "../../hooks/use-media-query.ts";
+import { useMediaQuery } from "@/hooks/use-media-query.ts";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,7 +41,7 @@ import {
     FormMessage,
 } from "../../components/ui/form.tsx";
 
-import {useEditUser} from "../../hooks/use-edit-user.ts";
+import {useEditUser} from "@/hooks/use-edit-user.ts";
 const editProfileSchema = z.object({
     name: z.string().min(2, {
         message: "Name must be at least 2 characters.",
@@ -73,7 +73,6 @@ function UserPage() {
         },
     });
 
-    // Reset form when user data changes or modal opens
     const handleEditOpen = (open: boolean) => {
         if (open) {
             form.reset({
