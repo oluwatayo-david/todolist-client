@@ -9,10 +9,10 @@ import {
 } from "./authThrunk";
 
 import {editUser} from "../user/userThrunk.ts";
-
+import type {UserData} from "../../../interfaces/interfaces.ts";
 
 interface AuthState {
-    user: null;
+    user:UserData |  null;
     token: string | null;
     loading: boolean;
     error: string | null;

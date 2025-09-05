@@ -5,14 +5,14 @@ interface TaskState {
     task: TaskData[];
     loading: boolean;
     error: string | null;
-    taskDetails: TaskData[];
+    taskDetails: TaskData | null;
 }
 
 const initialState: TaskState = {
     task: [],
     loading: false,
     error: null,
-    taskDetails:[]
+    taskDetails: null
 };
 
 const taskSlice = createSlice({

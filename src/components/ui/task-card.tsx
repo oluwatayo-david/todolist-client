@@ -35,7 +35,7 @@ import {useDeleteTask} from "../../hooks/task/use-delete-task.ts";
 import {useState} from "react";
 import {toast} from "sonner";
 
-function TaskCard({ name, details, taskImage, endDate, startDate , id }: TaskData) {
+function TaskCard({ name, details, taskImage, endDate, startDate , _id }: TaskData) {
     const { user } = useAuth();
     const [loading, setLoading] = useState(false);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -52,7 +52,7 @@ function TaskCard({ name, details, taskImage, endDate, startDate , id }: TaskDat
     const handleDeleteConfirm = async () => {
         try {
             setLoading(true);
-            await deletetask(id);
+            await deletetask(_id);
 
             setShowDeleteDialog(false);
             toast.success('Task deleted successfully');
@@ -191,7 +191,7 @@ function TaskCard({ name, details, taskImage, endDate, startDate , id }: TaskDat
                 </CardContent>
 
                 <CardFooter className="px-4 pt-0 pb-4">
-                    <Link  className="w-full bg-green-500 hover:bg-green-600 text-white rounded-lg py-2 px-3 text-center" to={`task/${id}`}>
+                    <Link  className="w-full bg-green-500 hover:bg-green-600 text-white rounded-lg py-2 px-3 text-center" to={`task/${_id}`}>
                         View Task
                     </Link>
                 </CardFooter>

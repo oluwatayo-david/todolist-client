@@ -47,6 +47,7 @@ import {Textarea} from "./textarea.tsx";
 import {formatDateDisplay, formatDateForBackend} from "../../lib/utils.ts";
 import {useCreateTask} from "../../hooks/task/use-create-task.ts";
 import {useGetTasks} from "../../hooks/task/use-get-tasks.tsx";
+import type {TaskData} from "../../../interfaces/interfaces.ts";
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -108,11 +109,11 @@ function Header() {
         try {
             const imageBase64 = await compressAndConvertImage(values.taskImage, 0.6, 300);
 
-            const data = {
+            const data: Partial<TaskData> = {
                 name: values.name,
                 details: values.details,
-                startDate: formatDateForBackend(values.startDate),
-                endDate: formatDateForBackend(values.endDate),
+                startDate: formatDateForBackend(values.startDate) || null,
+                endDate: formatDateForBackend(values.endDate) || null,
                 taskImage: values.taskImage
             }
 

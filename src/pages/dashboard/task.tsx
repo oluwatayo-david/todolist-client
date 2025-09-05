@@ -25,7 +25,6 @@ function TaskPage() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
 
-    console.log(id);
 
     const handleEdit = () => {
         console.log('Edit task');

@@ -21,7 +21,7 @@ export const useAuth = () => {
 
 
 
-    const login = async (userData) => {
+    const login = async (userData:any) => {
         return dispatch(loginUser(userData)).unwrap();
     };
 

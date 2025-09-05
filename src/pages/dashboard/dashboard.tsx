@@ -48,7 +48,7 @@ function DashboardPage() {
                 <div className={'grid lg:grid-cols-3 md:grid-cols-2 gap-4 grid-cols-1'}>
                     {task.map((taskItem, index) => (
                         <TaskCard
-                            id={taskItem?._id}
+                            _id={taskItem?._id}
                             key={taskItem?._id || index}
                             taskImage={taskItem?.taskImage?.url}
                             name={taskItem?.name}

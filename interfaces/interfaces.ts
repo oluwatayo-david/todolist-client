@@ -8,12 +8,20 @@ export interface SignupData {
 
 
 export interface TaskData {
-    id?:string;
+    _id?:string;
     name?: string;
-    taskImage?: null;
+    taskImage?: object;
     details?: string;
-    startDate?: null;
-    endDate?: null;
+    startDate?:string | null;
+    endDate?: string | null;
+}
+
+
+export interface UserData {
+    _id?: string;
+    name?: string;
+    email?: string;
+    profileImage?: object;
 }
 
 export interface Error {

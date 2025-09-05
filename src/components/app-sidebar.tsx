@@ -1,4 +1,4 @@
-import {  Home, Users, Settings, LogOut, ChevronRight, User, Loader2 } from "lucide-react"
+import {  Home, Users,  LogOut, ChevronRight, User, Loader2 } from "lucide-react"
 import { Link, useLocation } from "react-router-dom"
 import {
     Sidebar,
