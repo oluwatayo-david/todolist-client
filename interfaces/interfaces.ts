@@ -10,7 +10,10 @@ export interface SignupData {
 export interface TaskData {
     _id?:string;
     name?: string;
-    taskImage?: object;
+    taskImage?: {
+        url?:string;
+        publicID?:string;
+    } | null ;
     details?: string;
     startDate?:string | null;
     endDate?: string | null;
@@ -21,9 +24,10 @@ export interface UserData {
     _id?: string;
     name?: string;
     email?: string;
-    profileImage?: object;
+    profileImage?: {
+        url?:string;
+        publicID?:string;
+    } | null;
 }
 
-export interface Error {
-    error?: unknown;
-}
+

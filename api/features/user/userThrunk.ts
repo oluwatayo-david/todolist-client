@@ -9,7 +9,7 @@ export const editUser = createAsyncThunk(
     "user/editUser",
     async (userData:UserData, {rejectWithValue, fulfillWithValue}) => {
         try {
-            const response = await axiosInstance.put(`/users/${userData?.id}`, userData, {
+            const response = await axiosInstance.put(`/users/${userData?._id}`, userData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }

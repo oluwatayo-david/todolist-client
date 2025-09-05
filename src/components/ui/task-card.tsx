@@ -141,7 +141,7 @@ function TaskCard({ name, details, taskImage, endDate, startDate , _id }: TaskDa
                     {taskImage && (
                         <div className="mb-2">
                             <img
-                                src={taskImage}
+                                src={taskImage?.url}
                                 className="w-full h-48 object-cover rounded-lg shadow-sm"
                                 alt={`Task: ${name}`}
                                 onError={(e) => {

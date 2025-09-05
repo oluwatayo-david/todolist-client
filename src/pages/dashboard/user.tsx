@@ -112,9 +112,8 @@ function UserPage() {
         try {
             setUpdateLoading(true);
 
-            let imageBase64 = null;
             if (values.profileImage) {
-                imageBase64 = await compressAndConvertImage(values.profileImage, 0.6, 300);
+                await compressAndConvertImage(values.profileImage, 0.6, 300);
             }
 
             const data = {
@@ -124,7 +123,6 @@ function UserPage() {
                 ...(values.profileImage && { profileImage: values.profileImage })
             };
 
-            console.log('Update profile data:', data);
 
             await edit(data);
             setEditOpen(false);
@@ -173,7 +171,7 @@ function UserPage() {
                         disabled={updateLoading}
                         control={form.control}
                         name="profileImage"
-                        render={({ field: { onChange, value, ...field } }) => (
+                        render={({ field: { onChange,  ...field } }) => (
                             <FormItem className={'flex-1'}>
                                 <FormLabel>Profile Image (optional)</FormLabel>
                                 <FormControl>

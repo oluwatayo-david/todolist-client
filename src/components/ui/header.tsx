@@ -107,7 +107,7 @@ function Header() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            const imageBase64 = await compressAndConvertImage(values.taskImage, 0.6, 300);
+           await compressAndConvertImage(values.taskImage, 0.6, 300);
 
             const data: Partial<TaskData> = {
                 name: values.name,
@@ -156,7 +156,7 @@ function Header() {
                         disabled={loading}
                         control={form.control}
                         name="taskImage"
-                        render={({ field: { onChange, value, ...field } }) => (
+                        render={({ field: { onChange, ...field } }) => (
                             <FormItem className={'flex-1'}>
                                 <FormControl>
                                     <Input

@@ -50,7 +50,7 @@ function DashboardPage() {
                         <TaskCard
                             _id={taskItem?._id}
                             key={taskItem?._id || index}
-                            taskImage={taskItem?.taskImage?.url}
+                            taskImage={taskItem?.taskImage}
                             name={taskItem?.name}
                             details={taskItem?.details}
                             startDate={taskItem?.startDate}
