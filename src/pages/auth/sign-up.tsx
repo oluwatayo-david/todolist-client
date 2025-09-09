@@ -12,7 +12,7 @@ import {
     FormMessage,
 } from "../../components/ui/form"
 import { Input } from "../../components/ui/input"
-import {useAuth} from "../../hooks/use-auth.ts";
+import {useAuth} from "@/hooks/use-auth.ts";
 import {toast} from "sonner";
 import {FaCamera, FaRegUser} from "react-icons/fa";
 import {useState} from "react";
@@ -93,7 +93,7 @@ function SignUpPage() {
                 profileImage: values.profileImage
             }
 
-setLoading(true)
+            setLoading(true)
             await signup(data)
             navigate("/dashboard" , {replace:true})
             toast.success('Account created successfully')

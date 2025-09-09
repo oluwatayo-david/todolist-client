@@ -1,7 +1,7 @@
 import { useNavigate , Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "../../hooks/use-auth.ts";
-import { useMediaQuery } from "../../hooks/use-media-query.ts";
+import { useAuth } from "@/hooks/use-auth.ts";
+import { useMediaQuery } from "@/hooks/use-media-query.ts";
 import { Input } from "./input.tsx";
 import {FaCalendarDay, FaMagnifyingGlass, FaPlus} from "react-icons/fa6";
 import { Button } from "./button.tsx";
@@ -44,8 +44,8 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {toast} from "sonner";
 import {FaCamera} from "react-icons/fa";
 import {Textarea} from "./textarea.tsx";
-import {formatDateDisplay, formatDateForBackend} from "../../lib/utils.ts";
-import {useCreateTask} from "../../hooks/task/use-create-task.ts";
+import {formatDateDisplay, formatDateForBackend} from "@/lib/utils.ts";
+import {useCreateTask} from "@/hooks/task/use-create-task.ts";
 import {useGetTasks} from "../../hooks/task/use-get-tasks.tsx";
 import type {TaskData} from "../../../interfaces/interfaces.ts";
 
@@ -73,6 +73,7 @@ function Header() {
             details: "",
             startDate: undefined,
             endDate: undefined,
+            taskImage: undefined, // Add this to prevent undefined to controlled issues
         },
     })
 
@@ -81,8 +82,9 @@ function Header() {
     const [open, setOpen] = useState(false);
     const isDesktop = useMediaQuery("(min-width: 768px)");
     const { user } = useAuth();
- const { loading , create   }= useCreateTask()
+    const { loading , create   }= useCreateTask()
     const {refetchData} = useGetTasks()
+
     const compressAndConvertImage = (file: File, quality = 0.7, maxWidth = 400): Promise<string> => {
         return new Promise((resolve, reject) => {
             const canvas = document.createElement('canvas');
@@ -107,7 +109,7 @@ function Header() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-           await compressAndConvertImage(values.taskImage, 0.6, 300);
+            await compressAndConvertImage(values.taskImage, 0.6, 300);
 
             const data: Partial<TaskData> = {
                 name: values.name,
@@ -122,7 +124,13 @@ function Header() {
             await create(data)
             await refetchData()
             setOpen(false);
-            form.reset();
+            form.reset({
+                name: "",
+                details: "",
+                startDate: undefined,
+                endDate: undefined,
+                taskImage: undefined,
+            });
             setImage(null);
             toast.success('Task created successfully')
             navigate('/dashboard' , {replace: true})
@@ -156,7 +164,7 @@ function Header() {
                         disabled={loading}
                         control={form.control}
                         name="taskImage"
-                        render={({ field: { onChange, ...field } }) => (
+                        render={({ field: { value, onChange, ...field } }) => (
                             <FormItem className={'flex-1'}>
                                 <FormControl>
                                     <Input

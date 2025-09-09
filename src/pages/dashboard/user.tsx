@@ -110,13 +110,13 @@ function UserPage() {
     const onSubmit = async (values: z.infer<typeof editProfileSchema>) => {
         try {
             setUpdateLoading(true);
-
+            
             if (values.profileImage) {
                 await compressAndConvertImage(values.profileImage, 0.6, 300);
             }
 
             const data = {
-                id: user?._id,
+                _id: user?._id,
                 name: values.name,
                 email: values.email,
                 ...(values.profileImage && { profileImage: values.profileImage })
@@ -170,7 +170,7 @@ function UserPage() {
                         disabled={updateLoading}
                         control={form.control}
                         name="profileImage"
-                        render={({ field: { onChange,  ...field } }) => (
+                        render={({ field: { onChange,  value ,  ...field } }) => (
                             <FormItem className={'flex-1'}>
                                 <FormLabel>Profile Image (optional)</FormLabel>
                                 <FormControl>
